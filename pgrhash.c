@@ -48,7 +48,7 @@ pgrhash_create(PGresult *result, int nkeycols, int *keycols)
 
 	Assert(nkeycols >= 1 && nkeycols <= MAX_KEY_COLS);
 
-	bucket_shift = fls(PQntuples(result));
+	bucket_shift = ffs(PQntuples(result));
 	if (bucket_shift >= sizeof(unsigned) * BITS_PER_BYTE)
 		pgcc_log(PGCC_FATAL, "too many tuples");
 
